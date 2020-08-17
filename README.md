@@ -1,5 +1,5 @@
 # Pyanitsa Simulation
-### This is a simulation of a card game called "Пьяница" a.k.a. "P'yanitsa" (transliteration from Russian) a.k.a. "The Drunkard" (English translation from Russian) a.k.a. "War" (in USA) a.k.a. "Battle" (in the United Kingdom)
+### This is a simulation of a Russian card game called "Пьяница" a.k.a. "P'yanitsa" (transliteration from Russian) a.k.a. "The Drunkard" (English translation from Russian) a.k.a. "War" (in USA) a.k.a. "Battle" (in the United Kingdom)
 
 ## Table of contents
 - [Information about the game](#information-about-the-game)
