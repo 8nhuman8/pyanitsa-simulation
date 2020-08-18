@@ -8,7 +8,7 @@ class Card:
     value: int
     suit: str
 
-    _conv_map = {
+    __CONV_MAP = {
         2: '2',
         3: '3',
         4: '4',
@@ -25,10 +25,10 @@ class Card:
     }
 
     def __str__(self) -> str:
-        return f'{self._conv_map[self.value]} of {self.suit}'
+        return f'{self.__CONV_MAP[self.value]} of {self.suit}'
 
     def __repr__(self) -> str:
-        return f'Card({self._conv_map[self.value]}, {self.suit})'
+        return f'Card({self.__CONV_MAP[self.value]}, {self.suit})'
 
     def __is_valid_operand(self, other) -> bool:
         return hasattr(other, 'value')

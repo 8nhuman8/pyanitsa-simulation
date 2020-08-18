@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 from randword import name
 
 from deck import Deck
@@ -36,6 +38,11 @@ class Game:
 
     def main_loop(self) -> None:
         while any([player.hand for player in self.players]):
-            cards = sorted([player.put() for player in self.players], reverse=True)
-            print(cards)
+            cards = {player.name: player.put() for player in self.players}
+            #max_card = max(cards.values())
+            #dispute_cards = OrderedDict({name: card for name, card in cards.items() if card == max_card})
+            #if len(dispute_cards) == 1:
+            #    dispute_cards[max_card].take(cards)
+            #dispute_cards[max_card].show_hand()
+            #print(dispute_cards.items()[0])
             input()

@@ -21,5 +21,8 @@ class Player:
     def draw(self, deck: Deck) -> None:
         self.hand.append(deck.draw_card())
 
+    def take(self, cards: list) -> None:
+        self.hand = cards + self.hand
+
     def put(self) -> Card:
         return self.hand.pop()
