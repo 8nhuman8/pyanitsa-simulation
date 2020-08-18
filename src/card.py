@@ -30,15 +30,15 @@ class Card:
     def __repr__(self) -> str:
         return f'Card({self._conv_map[self.value]}, {self.suit})'
 
-    def _is_valid_operand(self, other) -> bool:
+    def __is_valid_operand(self, other) -> bool:
         return hasattr(other, 'value')
 
     def __eq__(self, other) -> bool:
-        if not self._is_valid_operand(other):
+        if not self.__is_valid_operand(other):
             return NotImplemented
         return self.value == other.value
 
     def __gt__(self, other) -> bool:
-        if not self._is_valid_operand(other):
+        if not self.__is_valid_operand(other):
             return NotImplemented
         return self.value > other.value
