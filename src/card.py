@@ -7,6 +7,7 @@ from functools import total_ordering
 class Card:
     value: int
     suit: str
+    owner: str
 
     __CONV_MAP = {
         2: '2',
@@ -25,10 +26,10 @@ class Card:
     }
 
     def __str__(self) -> str:
-        return f'{self.__CONV_MAP[self.value]} of {self.suit}'
+        return f'{self.__CONV_MAP[self.value]} of {self.suit} ({self.owner}\'s)'
 
     def __repr__(self) -> str:
-        return f'Card({self.__CONV_MAP[self.value]}, {self.suit})'
+        return f'Card({self.__CONV_MAP[self.value]}, {self.suit}, {self.owner}\'s)'
 
     def __is_valid_operand(self, other) -> bool:
         return hasattr(other, 'value')

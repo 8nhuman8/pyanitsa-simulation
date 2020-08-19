@@ -20,7 +20,7 @@ class Deck:
 
     def _build(self) -> None:
         suits = ('\u2660', '\u2666', '\u2663', '\u2665') # ≡ ('♠', '♦', '♣', '♥')
-        self.cards = [Card(value, suit) for value in range(2, 15) for suit in suits]
+        self.cards = [Card(value, suit, None) for value in range(2, 15) for suit in suits]
 
     def _shuffle(self) -> None:
         rand_shuffle(self.cards)

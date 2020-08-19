@@ -36,13 +36,24 @@ class Game:
                 player.draw(self.deck)
 
 
+    def __find_player(self, name: str) -> Player:
+        return next(player for player in self.players if player.name == name)
+
+
+    def __dispute_process(self, cards: list) -> None:
+        max_card = max(cards)
+        dispute_cards = [card for card in cards if card == max_card]
+
+        if len(dispute_cards) == 1:
+            max_card_owner = max_card.owner
+            self.__find_player(max_card_owner).take(cards)
+            self.__find_player(max_card.owner).show_hand()
+        else:
+            pass
+
+
     def main_loop(self) -> None:
         while any([player.hand for player in self.players]):
-            cards = {player.name: player.put() for player in self.players}
-            #max_card = max(cards.values())
-            #dispute_cards = OrderedDict({name: card for name, card in cards.items() if card == max_card})
-            #if len(dispute_cards) == 1:
-            #    dispute_cards[max_card].take(cards)
-            #dispute_cards[max_card].show_hand()
-            #print(dispute_cards.items()[0])
+            cards = [player.put() for player in self.players]
+            self.__dispute_process(cards)
             input()

@@ -19,9 +19,13 @@ class Player:
             print(card)
 
     def draw(self, deck: Deck) -> None:
-        self.hand.append(deck.draw_card())
+        card = deck.draw_card()
+        card.owner = self.name
+        self.hand.append(card)
 
     def take(self, cards: list) -> None:
+        for card in cards:
+            card.owner = self.name
         self.hand = cards + self.hand
 
     def put(self) -> Card:
