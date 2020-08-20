@@ -14,9 +14,10 @@ class Player:
         return f'Player({self.name})'
 
     def show_hand(self) -> None:
-        print(f'Total amount of cards: {len(self.hand)}')
+        print(f'{self.name}\'s total amount of cards: {len(self.hand)}')
         for card in self.hand:
-            print(card)
+            print(card, end=', ')
+        print(end='\n\n')
 
     def draw(self, deck: Deck) -> None:
         card = deck.draw_card()

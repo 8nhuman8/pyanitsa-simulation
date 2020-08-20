@@ -26,13 +26,13 @@ class Card:
     }
 
     def __str__(self) -> str:
-        return f'{self.__CONV_MAP[self.value]} of {self.suit} ({self.owner}\'s)'
+        return f'{self.__CONV_MAP[self.value]} of {self.suit}'
 
     def __repr__(self) -> str:
-        return f'Card({self.__CONV_MAP[self.value]}, {self.suit}, {self.owner}\'s)'
+        return f'Card({self.__CONV_MAP[self.value]}, {self.suit}, {self.owner})'
 
     def __is_valid_operand(self, other) -> bool:
-        return hasattr(other, 'value')
+        return hasattr(other, 'value') and hasattr(other, 'suit') and hasattr(other, 'owner')
 
     def __eq__(self, other) -> bool:
         if not self.__is_valid_operand(other):

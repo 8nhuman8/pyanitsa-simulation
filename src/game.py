@@ -17,10 +17,11 @@ class Game:
         self.__hand_out_deck()
 
 
-    def show_players_hands(self):
+    def __show_players_hands(self) -> None:
+        print('START --------------------------------------------', end='\n\n')
         for player in self.players:
-            print(player.name, end=': ')
-            print(player.hand, end='\n\n')
+            player.show_hand()
+        print('END ----------------------------------------------', end='\n\n')
 
 
     def __equalize_deck(self) -> None:
@@ -40,20 +41,32 @@ class Game:
         return next(player for player in self.players if player.name == name)
 
 
-    def __dispute_process(self, cards: list) -> None:
+    def __is_over(self) -> bool:
+        return sum([int(bool(player.hand)) for player in self.players]) == 1
+
+
+    def __dispute_process(self, cards: list, closed_cards: list) -> None:
         max_card = max(cards)
         dispute_cards = [card for card in cards if card == max_card]
+        print('Dispute cards:', cards, end='\n\n')
 
         if len(dispute_cards) == 1:
             max_card_owner = max_card.owner
-            self.__find_player(max_card_owner).take(cards)
-            self.__find_player(max_card.owner).show_hand()
+            print(cards + closed_cards)
+            self.__find_player(max_card_owner).take(cards + closed_cards)
+            self.__find_player(max_card_owner).show_hand()
         else:
-            pass
+            players_in_dispute = [self.__find_player(card.owner) for card in dispute_cards]
+            print(players_in_dispute)
+            cl = cards + [player.put() for player in players_in_dispute]
+            c = [player.put() for player in players_in_dispute]
+            self.__dispute_process(c, cl)
+
 
 
     def main_loop(self) -> None:
-        while any([player.hand for player in self.players]):
-            cards = [player.put() for player in self.players]
-            self.__dispute_process(cards)
-            input()
+        while not self.__is_over():
+            self.__show_players_hands()
+            cards = [player.put() for player in self.players if player.hand]
+            self.__dispute_process(cards, [])
+        self.__show_players_hands()
