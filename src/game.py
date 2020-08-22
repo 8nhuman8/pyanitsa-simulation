@@ -9,6 +9,7 @@ from player import Player
 class Game:
     def __init__(self, players_amount: int) -> None:
         self.turn_count = 1
+
         self.players_amount = players_amount
         self.players = [Player(name()) for _ in range(self.players_amount)]
 
