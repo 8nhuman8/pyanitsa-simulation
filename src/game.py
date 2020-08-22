@@ -47,36 +47,40 @@ class Game:
         return sum(int(bool(player.hand)) for player in self.players) == 1
 
 
-    def __process_turn(self, cards: list, cards_to_take: list = []) -> None:
-        print(f'!!!!!! TURN {self.turn_count} STARTED !!!!!!', end='\n\n')
-
+    def __process_turn(self, cards: list, cards_to_take: list = [], level: int = 1) -> None:
         self.turn_count += 1
+        level_indicator = '+' * level
 
         max_card = max(cards)
         dispute_cards = [card for card in cards if card == max_card]
-        print('Dispute cards:', cards, end='\n\n')
 
         if len(dispute_cards) == 1:
+            print(level_indicator, 'Cards on the table:', cards)
+
             cards_to_take = cards + cards_to_take
-            print('Cards to take:', cards_to_take, end='\n\n')
+            print(level_indicator, 'Cards to take:', cards_to_take, end='\n\n')
+
             self.__find_player(max_card.owner).take(cards_to_take)
         else:
+            print(level_indicator, 'Dispute cards:', cards)
             players_in_dispute = [self.__find_player(card.owner) for card in dispute_cards]
-            print('Players in dispute:', players_in_dispute, end='\n\n')
 
-            cached_cards = cards + cards_to_take + [player.put() for player in players_in_dispute]
-            print('Closed cards:', cached_cards, end='\n\n')
+            closed_cards = [player.put() for player in players_in_dispute]
+            print(level_indicator, 'Closed cards:', closed_cards, end='\n\n')
 
+            cached_cards = cards + cards_to_take + closed_cards
             dispute_cards = [player.put() for player in players_in_dispute]
-            self.__process_turn(dispute_cards, cached_cards)
 
-        print(f'!!!!!! TURN {self.turn_count} FINISHED !!!!!!', end='\n\n\n\n')
-
+            self.__process_turn(dispute_cards, cached_cards, level + 1)
 
 
     def main_loop(self) -> None:
         while not self.__is_over():
             self.__show_players_hands()
             cards = [player.put() for player in self.players if player.hand]
+
+            print(f'!!!!!! TURN {self.turn_count} STARTED !!!!!!', end='\n\n')
             self.__process_turn(cards)
+            print(f'!!!!!! TURN {self.turn_count} FINISHED !!!!!!', end='\n\n\n\n')
+
         self.__show_players_hands()
