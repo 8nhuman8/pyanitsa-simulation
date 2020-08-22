@@ -65,11 +65,11 @@ class Game:
             print(level_indicator, 'Dispute cards:', cards)
             players_in_dispute = [self.__find_player(card.owner) for card in dispute_cards]
 
-            closed_cards = [player.put() for player in players_in_dispute]
+            closed_cards = [player.put() for player in players_in_dispute if player.hand]
             print(level_indicator, 'Closed cards:', closed_cards, end='\n\n')
 
             cached_cards = cards + cards_to_take + closed_cards
-            dispute_cards = [player.put() for player in players_in_dispute]
+            dispute_cards = [player.put() for player in players_in_dispute if player.hand]
 
             self.__process_turn(dispute_cards, cached_cards, level + 1)
 

@@ -39,7 +39,13 @@ class Card:
             return NotImplemented
         return self.value == other.value
 
+    # 6 > A
     def __gt__(self, other) -> bool:
         if not self.__is_valid_operand(other):
             return NotImplemented
-        return self.value > other.value
+        if self.value == 6 and other.value == 14:
+            return True
+        elif self.value == 14 and other.value == 6:
+            return False
+        else:
+            return self.value > other.value
