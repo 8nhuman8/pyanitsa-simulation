@@ -44,10 +44,12 @@ class Game:
 
 
     def __is_over(self) -> bool:
-        return sum([int(bool(player.hand)) for player in self.players]) == 1
+        return sum(int(bool(player.hand)) for player in self.players) == 1
 
 
     def __process_turn(self, cards: list, cards_to_take: list = []) -> None:
+        print(f'!!!!!! TURN {self.turn_count} STARTED !!!!!!', end='\n\n')
+
         self.turn_count += 1
 
         max_card = max(cards)
@@ -68,13 +70,13 @@ class Game:
             dispute_cards = [player.put() for player in players_in_dispute]
             self.__process_turn(dispute_cards, cached_cards)
 
+        print(f'!!!!!! TURN {self.turn_count} FINISHED !!!!!!', end='\n\n\n\n')
+
 
 
     def main_loop(self) -> None:
         while not self.__is_over():
             self.__show_players_hands()
             cards = [player.put() for player in self.players if player.hand]
-            print(f'!!!!!! TURN {self.turn_count} STARTED !!!!!!', end='\n\n')
             self.__process_turn(cards)
-            print(f'!!!!!! TURN {self.turn_count} FINISHED !!!!!!', end='\n\n\n\n')
         self.__show_players_hands()
