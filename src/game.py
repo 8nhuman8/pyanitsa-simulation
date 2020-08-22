@@ -8,6 +8,7 @@ from player import Player
 
 class Game:
     def __init__(self, players_amount: int) -> None:
+        self.turn_count = 1
         self.players_amount = players_amount
         self.players = [Player(name()) for _ in range(self.players_amount)]
 
@@ -18,10 +19,10 @@ class Game:
 
 
     def __show_players_hands(self) -> None:
-        print('START --------------------------------------------', end='\n\n')
+        print('---- INFORMATION ABOUT PLAYERS |START| ----', end='\n\n')
         for player in self.players:
             player.show_hand()
-        print('END ----------------------------------------------', end='\n\n')
+        print('----- INFORMATION ABOUT PLAYERS |END| -----', end='\n\n\n\n')
 
 
     def __equalize_deck(self) -> None:
@@ -45,22 +46,26 @@ class Game:
         return sum([int(bool(player.hand)) for player in self.players]) == 1
 
 
-    def __dispute_process(self, cards: list, closed_cards: list) -> None:
+    def __process_turn(self, cards: list, cards_to_take: list = []) -> None:
+        self.turn_count += 1
+
         max_card = max(cards)
         dispute_cards = [card for card in cards if card == max_card]
         print('Dispute cards:', cards, end='\n\n')
 
         if len(dispute_cards) == 1:
-            max_card_owner = max_card.owner
-            print(cards + closed_cards)
-            self.__find_player(max_card_owner).take(cards + closed_cards)
-            self.__find_player(max_card_owner).show_hand()
+            cards_to_take = cards + cards_to_take
+            print('Cards to take:', cards_to_take, end='\n\n')
+            self.__find_player(max_card.owner).take(cards_to_take)
         else:
             players_in_dispute = [self.__find_player(card.owner) for card in dispute_cards]
-            print(players_in_dispute)
-            cl = cards + [player.put() for player in players_in_dispute]
-            c = [player.put() for player in players_in_dispute]
-            self.__dispute_process(c, cl)
+            print('Players in dispute:', players_in_dispute, end='\n\n')
+
+            cached_cards = cards + cards_to_take + [player.put() for player in players_in_dispute]
+            print('Closed cards:', cached_cards, end='\n\n')
+
+            dispute_cards = [player.put() for player in players_in_dispute]
+            self.__process_turn(dispute_cards, cached_cards)
 
 
 
@@ -68,5 +73,7 @@ class Game:
         while not self.__is_over():
             self.__show_players_hands()
             cards = [player.put() for player in self.players if player.hand]
-            self.__dispute_process(cards, [])
+            print(f'!!!!!! TURN {self.turn_count} STARTED !!!!!!', end='\n\n')
+            self.__process_turn(cards)
+            print(f'!!!!!! TURN {self.turn_count} FINISHED !!!!!!', end='\n\n\n\n')
         self.__show_players_hands()
