@@ -32,7 +32,8 @@
 ## Usage and installation
 
 1. Upgrade required packages with `pip install -r requirements.txt --upgrade` (if you don't have one, it will be automatically installed).
-2. Run the `main.py` with `python src/main.py`.
+2. Edit global variables in [`main.py`](src/main.py) if you want.
+3. Run the `main.py` with `python src/main.py`.
 
 ## Credits and references
 
