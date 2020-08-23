@@ -1,5 +1,6 @@
 from game import Game
 
 
-game = Game(2)
-game.main_loop()
+if __name__ == '__main__':
+    game = Game(2)
+    game.main_loop()
