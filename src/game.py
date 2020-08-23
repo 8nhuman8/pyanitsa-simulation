@@ -1,5 +1,3 @@
-from collections import OrderedDict
-
 from randword import name
 
 from deck import Deck
