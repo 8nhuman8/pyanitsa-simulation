@@ -1,5 +1,6 @@
 from randword import name
 
+from card import Card
 from deck import Deck
 from player import Player
 
@@ -45,7 +46,7 @@ class Game:
         return sum(int(bool(player.hand)) for player in self.players) == 1
 
 
-    def __process_turn(self, cards: list, cards_to_take: list = [], level: int = 1) -> None:
+    def __process_turn(self, cards: list[Card], cards_to_take: list[Card] = [], level: int = 1) -> None:
         self.turn_count += 1
         level_indicator = '+' * level
 

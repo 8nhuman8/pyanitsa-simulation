@@ -26,7 +26,7 @@ class Player:
         card.owner = self.name
         self.hand.append(card)
 
-    def take(self, cards: list) -> None:
+    def take(self, cards: list[Card]) -> None:
         for card in cards:
             card.owner = self.name
         self.hand = cards + self.hand
