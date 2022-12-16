@@ -1,1 +1,1 @@
-randword>=2.9.4
+randword>=2.11
