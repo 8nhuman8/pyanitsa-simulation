@@ -1,6 +1,6 @@
 # Pyanitsa Simulation
 
-`This is a simulation of a Russian card game called "Пьяница" a.k.a. "P'yanitsa" (transliteration from Russian) a.k.a. "The Drunkard" (English translation from Russian) a.k.a. "War" (in USA) a.k.a. "Battle" (in the United Kingdom)`
+The simulation of a Russian card game «Пьяница» ("P'yanitsa"), a.k.a. "War" in the USA, a.k.a. "Battle" in the UK
 
 ## Table of contents
 
@@ -15,19 +15,17 @@
 
 > ### Rules
 
-> The game uses a deck of 36, 52 or 54 cards. The game can be played by two to eight players.
+> The game uses a deck of 36, 52 or 54 cards. The game can be played from two to eight players.
 
-> The deck is distributed equally to all players. Players do not look at their cards, but place them in a pile next to them. The first player to walk removes the top card from his pile and places it in the center of the table open. Other players in a circle do the same. The player, whose card turned out to be older than all the others, removes his own and the “broken” cards and puts them in another pile (option: at the bottom of his pile); the order of folding the cards in different versions of the game can obey one or another rule or be arbitrary, which allows one or another strategy to be carried out in order to capture the highest cards from the opponent.
+> The deck is distributed equally to all players. Players do not look at their cards, but put them in a pile next to them. The first player to take the card removes the top card from his pile and places it face up in the center of the table. The other players around the circle do the same. That player, whose card turned out to be older than all the others, removes his own and "broken" cards and puts them in another pile (option: at the bottom of his pile); the order of folding cards in different versions of the game can be subject to certain rules or be arbitrary, which allows one or another strategy to be pursued in order to capture the highest possible cards from the opponent.
 
-> The player who has lost all of his cards is eliminated from the game.
+> The player who has lost all his cards is out of the game.
 
-> The winner is the player who has the entire deck in the pile. A giveaway game is also possible, in which the winner is the one who gets rid of his cards first.
+> The winner is the player who has the entire deck in the pile. A giveaway game is also possible, in which the winner is the one who gets rid of his cards before the rest.
 
 > ### Dispute
 
-> If two or more players have the same cards (this situation is called a "dispute"), then each of these players puts one more card on top, and the one whose card is older than all the others removes the cards. Option - each "arguing" player lays out two cards, one face down ("pawn"), and one face-down, which determines who takes the cards at stake. If among the three players two arguing cards are less than the third, then the third with the higher card automatically wins, and the dispute is canceled. If the player does not have cards to conduct a dispute, then he takes all the dispute cards. If the player has one card left, then the dispute goes on without a gap.
-
-> `It was a translation of the rules of the Russian variation of the game from the Wikipedia page`
+> If two or more players have the same cards (this situation is called a "dispute"), then each of these players puts one more card on top, and the one whose card turned out to be older than all the others removes the cards. Option - each "disputing" player lays out two cards, one face-down ("mortgage"), and one open, according to which it is determined who takes the cards lying on the line. If among three players two arguing cards are less than the third, then the third one with the higher card automatically wins, and the dispute is canceled. If a player has no cards to hold a dispute, then he takes all the cards of the dispute. If the player has one card left, then the dispute goes on without a gap.
 
 ## Usage and installation
 
@@ -44,4 +42,4 @@
 
 [Pyanitsa Simulation](https://github.com/8nhuman8/pyanitsa-simulation) specific code is distributed under [MIT License](https://github.com/8nhuman8/pyanitsa-simulation/blob/master/LICENSE).
 
-Copyright (c) 2020 Artyom Bezmenov
+Copyright (c) 2022 Artyom Bezmenov
