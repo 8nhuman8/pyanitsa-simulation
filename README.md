@@ -29,7 +29,7 @@ The simulation of a Russian card game «Пьяница» ("P'yanitsa"), a.k.a. "
 
 ## Usage and installation
 
-1. Upgrade required packages with `pip install -r requirements.txt --upgrade` (if you don't have one, it will be automatically installed).
+1. Install/upgrade required packages with `pip install -r requirements.txt --upgrade`.
 2. Edit global variables in [`main.py`](src/main.py) if you want.
 3. Run the `main.py` with `python src/main.py`.
 
